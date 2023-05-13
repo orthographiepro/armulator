@@ -22,7 +22,7 @@ class cpu:
             self.alu.command(self.command_list[self.reg.read("pc")])
 
     def branch(self, label:str):
-        pass
+        self.reg.write("pc",self.label_lookup[label])
 
     def end(self):
         self.con = False
