@@ -8,17 +8,28 @@ class register:
             "v" : False
         }
 
-    def write(address, value):
-        pass
+    def write(self, address, value:int):
+        if address not in address_dict:
+            raise Exception(f"Adress {address} not in adress-dictionary!")
+        if value >= 2**32:
+            raise Exception(f"Value {value} too big for a 32-bit register!")
+        self.register[address_dict[address]] = value
 
-    def read(address):
-        pass
+    def read(self, address):
+        if address not in address_dict:
+            raise Exception(f"Adress {address} not in adress-dictionary!")
+        return self.register[address_dict[address]]
 
-    def set_flag(flag, value):
-        pass
-
-    def get_flag(flag):
-        pass
+    def set_flag(self, flag, value:bool):
+        if flag not in self.cpsr:
+            raise Exception(f"Flag {flag} not a valid (or implemented) flag!")
+        self.cpsr[flag] = value
+        
+        
+    def get_flag(self, flag):
+        if flag not in self.cpsr:
+            raise Exception(f"Flag {flag} not a valid (or implemented) flag!")
+        return self.cpsr[flag]
         
     
 address_dict = {
