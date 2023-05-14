@@ -4,4 +4,3 @@ class command:
         self.target
         self.first
         self.second
-        self.set_flags
