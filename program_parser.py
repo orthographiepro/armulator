@@ -28,7 +28,7 @@ class program_parser:
 
             argument_list = re.split(r'\w+', line)
             
-            comm = self.resolve_command()
+            self.command_list.append(self.resolve_command(argument_list))
 
             line_counter += 1   
         
@@ -48,4 +48,10 @@ class program_parser:
         # TODO: multiline comments
 
     def resolve_command(self, arguments) -> command:
-        pass
+        c = command()
+        c.command_type = arguments[0]
+        c.target = arguments[1]
+        c.first = arguments[2]
+        
+        if len(arguments) > 3:
+            c.second = arguments[1]
